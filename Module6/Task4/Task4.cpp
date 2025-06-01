@@ -1,7 +1,4 @@
 #include <iostream>
-#include "WorkWithString.h"
-#include "SortVector.h"
-#include "CreateAndDeleteArray.h"
 #include <vector>
 #include <random>
 
@@ -10,8 +7,7 @@ int main()
 {
     std::cout << "Task4" << std::endl;
 
-    int* Array = new int[10];
-
+    std::unique_ptr<int[]> Array = std::make_unique<int[]>(10);
 
     for (int i = 0; i < 10; ++i) {
         int number = 0;
@@ -27,8 +23,8 @@ int main()
     }
 
     std::cout << std::endl;
-    std::cout << "Min: " << *std::min_element(Array, Array + 10) << std::endl;
-    std::cout << "Max: " << *std::max_element(Array, Array + 10) << std::endl;
+    std::cout << "Min: " << *std::min_element(&Array[0], &Array[0] + 10) << std::endl;
+    std::cout << "Max: " << *std::max_element(&Array[0], &Array[0] + 10) << std::endl;
 
     std::cout << std::endl;
 }
