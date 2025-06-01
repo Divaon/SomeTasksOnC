@@ -17,6 +17,6 @@ int main()
 	std::cout << NewBook.getYear() << std::endl;
 	std::cout << NewBook.getISBN() << std::endl;
 
-
+	
 }
 

@@ -10,12 +10,18 @@ Book::Book(const char* title, const char* author, const char* year, const char* 
 	_ISBN = ISBN;
 };
 
-Book::Book(const Book& book) :
-	_title(book._title), _author(book._author), _ISBN(book._ISBN), _year(book._year)
+Book::Book(const Book& book) 
 {
+	_title = book._title; 
+	_author= book._author;
+	_ISBN= book._ISBN;
+	_year = book._year;
 };
 
-Book::~Book() = default;
+Book::~Book()
+{
+	std::cout << "Book waas deleted" <<  std::endl;
+};
 
 const char* Book::getTitle()
 {
