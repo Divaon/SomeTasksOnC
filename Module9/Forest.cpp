@@ -23,3 +23,8 @@ Forest Forest::operator+(const Forest& other) const
 	return result;
 };
 
+Forest::~Forest()
+{
+	cutAll();
+};
+
