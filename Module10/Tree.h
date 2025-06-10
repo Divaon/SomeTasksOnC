@@ -12,10 +12,10 @@ enum class TreeType {
 class Tree
 {
 public:
-	virtual void wind();
+	virtual void wind()=0;
 	const int getID();
 	const std::string getName();
-	virtual const int getCount() ;
+	virtual const int getCount() =0;
 	const TreeType getTreeType() const;
 protected:
 	std::string _name;

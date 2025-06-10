@@ -15,17 +15,17 @@ int main()
 	LeafForest f1;
 	ConiferousForest f2;
 
-	f1.growUp(t1);
-	f1.growUp(t2);
-	f1.growUp(t3);
-	f1.growUp(t4);
-	f1.growUp(t5);
+	f1.growUp(&t1);
+	f1.growUp(&t2);
+	f1.growUp(&t3);
+	f1.growUp(&t4);
+	f1.growUp(&t5);
 
-	f2.growUp(t1);
-	f2.growUp(t2);
-	f2.growUp(t3);
-	f2.growUp(t4);
-	f2.growUp(t5);
+	f2.growUp(&t1);
+	f2.growUp(&t2);
+	f2.growUp(&t3);
+	f2.growUp(&t4);
+	f2.growUp(&t5);
 
 	f1.wind();
 	f2.wind();

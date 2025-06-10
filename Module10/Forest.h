@@ -5,23 +5,23 @@
 class Forest
 {
 public:
-	virtual void growUp(const Tree& NewTree) {};
+	virtual void growUp(Tree* NewTree) =0;
 	const int getTreesNumber();
 	void wind();
 	void cutAll();
 	~Forest();
 
 protected:
-	std::vector<Tree> Trees;
+	std::vector<Tree*> Trees;
 };
 
 
 class LeafForest : public Forest {
 public:
-	void growUp(const Tree& tree) override;
+	void growUp(Tree* NewTree) override;
 };
 
 class ConiferousForest : public Forest {
 public:
-	void growUp(const Tree& tree) override;
+	void growUp(Tree* NewTree) override;
 };

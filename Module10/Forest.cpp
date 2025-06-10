@@ -20,15 +20,15 @@ Forest::~Forest()
 
 void Forest::wind()
 {
-	for (int i = 0; i < Trees.size(); i++)
-	{
-		Trees[i].wind();
+	for (auto tree = Trees.begin(); tree != Trees.end(); tree++) {
+		(*tree)->wind();
 	}
+
 }
 
-void LeafForest::growUp(const Tree& NewTree)
+void LeafForest::growUp(Tree* NewTree)
 {
-	if (NewTree.getTreeType() != TreeType::Coniferous)
+	if (NewTree->getTreeType() != TreeType::Coniferous)
 	{
 		Trees.push_back(NewTree);
 	}
@@ -38,9 +38,9 @@ void LeafForest::growUp(const Tree& NewTree)
 	}
 }
 
-void ConiferousForest::growUp(const Tree& NewTree)
+void ConiferousForest::growUp(Tree* NewTree)
 {
-	if (NewTree.getTreeType() == TreeType::Coniferous)
+	if (NewTree->getTreeType() == TreeType::Coniferous)
 	{
 		Trees.push_back(NewTree);
 	}

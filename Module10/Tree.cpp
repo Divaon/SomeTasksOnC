@@ -25,15 +25,7 @@ const TreeType Tree::getTreeType() const
 	return _treeType;
 };
 
-const int Tree::getCount()
-{
-	return -1;
-}
 
-void Tree::wind()
-{
-	std::cout << "Tree name = " << this->_name << " and id=" << this->_id << std::endl;
-};
 
 Oak::~Oak() {
 	_count--;
@@ -140,7 +132,7 @@ const int Coniferous::getCount()
 Coniferous::Coniferous(const std::string& name)
 {
 	this->_name = name;
-	this->_treeType = TreeType::Chestnut;
+	this->_treeType = TreeType::Coniferous;
 	this->_count += 1;
 	this->_id = _count;
 
