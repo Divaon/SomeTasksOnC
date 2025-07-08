@@ -9,23 +9,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->comboBoxCurrency_1->addItem("USD");
-    ui->comboBoxCurrency_1->addItem("EUR");
-    ui->comboBoxCurrency_1->addItem("RUB");
+    ui->ComboBoxCurrency_1->addItem("USD");
+    ui->ComboBoxCurrency_1->addItem("EUR");
+    ui->ComboBoxCurrency_1->addItem("RUB");
 
-    ui->comboBoxCurrency_2->addItem("USD");
-    ui->comboBoxCurrency_2->addItem("EUR");
-    ui->comboBoxCurrency_2->addItem("RUB");
+    ui->ComboBoxCurrency_2->addItem("USD");
+    ui->ComboBoxCurrency_2->addItem("EUR");
+    ui->ComboBoxCurrency_2->addItem("RUB");
 
-    rubTousd = 0.5;
-    rubToeuro = 0.333333;
-    usdToeuro = 1.5;
+    RubToUsd = 0.5;
+    RubToEuro = 0.333333;
+    UsdToEuro = 1.5;
 
-    connect(ui->lineEditInput, &QLineEdit::textChanged, this, &MainWindow::collectInput);
-    connect(ui->comboBoxCurrency_1, &QComboBox::currentIndexChanged, this, &MainWindow::collectInput);
-    connect(ui->comboBoxCurrency_2, &QComboBox::currentIndexChanged, this, &MainWindow::collectInput);
+    connect(ui->LineEditInput, &QLineEdit::textChanged, this, &MainWindow::CollectInput);
+    connect(ui->ComboBoxCurrency_1, &QComboBox::currentIndexChanged, this, &MainWindow::CollectInput);
+    connect(ui->ComboBoxCurrency_2, &QComboBox::currentIndexChanged, this, &MainWindow::CollectInput);
 
-    collectInput();
+    CollectInput();
 }
 
 MainWindow::~MainWindow()
@@ -34,75 +34,75 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::collectInput()
+void MainWindow::CollectInput()
 {
 
     double inputValue = 0.0;
     bool ok = false;
 
-    if (!ui->lineEditInput->text().isEmpty()) {
-        inputValue = ui->lineEditInput->text().toDouble(&ok);
+    if (!ui->LineEditInput->text().isEmpty()) {
+        inputValue = ui->LineEditInput->text().toDouble(&ok);
     }
-    else if (ui->lineEditInput->text().isEmpty())
+    else if (ui->LineEditInput->text().isEmpty())
     {
         inputValue = 0.0;
         ok = true;
     }
 
     if (ok && inputValue >= 0) {
-        updateConversion(inputValue);
+        UpdateConversion(inputValue);
     }
     else {
-        ui->labelResult->setText("Ошибка ввода");
+        ui->LabelResult->setText("Ошибка ввода");
         QMessageBox::warning(this, "Ошибка", "Пожалуйста, введите корректное положительное число");
     }
 }
 
-void MainWindow::updateConversion(double value)
+void MainWindow::UpdateConversion(double value)
 {
-    QString selectedCurrency_1 = ui->comboBoxCurrency_1->currentText();
-    QString selectedCurrency_2 = ui->comboBoxCurrency_2->currentText();
+    QString SelectedCurrency_1 = ui->ComboBoxCurrency_1->currentText();
+    QString SelectedCurrency_2 = ui->ComboBoxCurrency_2->currentText();
     double convertedValue;
 
-    if (selectedCurrency_2 == "USD" && selectedCurrency_1 == "RUB")
+    if (SelectedCurrency_2 == "USD" && SelectedCurrency_1 == "RUB")
     {
-        convertedValue = value * rubTousd;
+        convertedValue = value * RubToUsd;
     }
-    else if (selectedCurrency_2 == "EUR" && selectedCurrency_1 == "RUB")
+    else if (SelectedCurrency_2 == "EUR" && SelectedCurrency_1 == "RUB")
     {
-        convertedValue = value * rubToeuro;
+        convertedValue = value * RubToEuro;
     }
-    else if (selectedCurrency_2 == "RUB" && selectedCurrency_1 == "RUB")
-    {
-        convertedValue = value ;
-    }
-
-    else if (selectedCurrency_2 == "RUB" && selectedCurrency_1 == "EUR")
-    {
-        convertedValue = value/rubToeuro ;
-    }
-    else if (selectedCurrency_2 == "USD" && selectedCurrency_1 == "EUR")
-    {
-        convertedValue = value*usdToeuro ;
-    }
-    else if (selectedCurrency_2 == "EUR" && selectedCurrency_1 == "EUR")
+    else if (SelectedCurrency_2 == "RUB" && SelectedCurrency_1 == "RUB")
     {
         convertedValue = value ;
     }
 
-
-    else if (selectedCurrency_2 == "RUB" && selectedCurrency_1 == "USD")
+    else if (SelectedCurrency_2 == "RUB" && SelectedCurrency_1 == "EUR")
     {
-        convertedValue = value/rubTousd ;
+        convertedValue = value/RubToEuro ;
     }
-    else if (selectedCurrency_2 == "EUR" && selectedCurrency_1 == "USD")
+    else if (SelectedCurrency_2 == "USD" && SelectedCurrency_1 == "EUR")
     {
-        convertedValue = value/usdToeuro ;
+        convertedValue = value*UsdToEuro ;
     }
-    else if (selectedCurrency_2 == "USD" && selectedCurrency_1 == "USD")
+    else if (SelectedCurrency_2 == "EUR" && SelectedCurrency_1 == "EUR")
     {
         convertedValue = value ;
     }
 
-    ui->labelResult->setText(QString::number(convertedValue, 'f', 2));
+
+    else if (SelectedCurrency_2 == "RUB" && SelectedCurrency_1 == "USD")
+    {
+        convertedValue = value/RubToUsd ;
+    }
+    else if (SelectedCurrency_2 == "EUR" && SelectedCurrency_1 == "USD")
+    {
+        convertedValue = value/UsdToEuro ;
+    }
+    else if (SelectedCurrency_2 == "USD" && SelectedCurrency_1 == "USD")
+    {
+        convertedValue = value ;
+    }
+
+    ui->LabelResult->setText(QString::number(convertedValue, 'f', 2));
 }

@@ -18,13 +18,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void updateConversion(double value);
-    void collectInput();
+    void UpdateConversion(double value);
+    void CollectInput();
 
 private:
     Ui::MainWindow *ui;
-    double rubTousd;
-    double rubToeuro;
-    double usdToeuro;
+    double RubToUsd;
+    double RubToEuro;
+    double UsdToEuro;
 };
 #endif
