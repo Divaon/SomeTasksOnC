@@ -5,7 +5,7 @@
 
 
 int main() {
-    // «аполнение массива случайными числами от 1 до 100
+
     static std::random_device rd;
     static std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(1, 100);
