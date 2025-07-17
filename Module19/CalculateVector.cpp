@@ -67,3 +67,4 @@ const int CalculateVector::getSum()
 {
     return _sum;
 };
+
